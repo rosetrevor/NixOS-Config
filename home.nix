@@ -116,4 +116,5 @@
   xdg.configFile.wofi.source = ./wofi;
   xdg.configFile.hypr.source = ./hypr;
   xdg.configFile.backgrounds.source = ./backgrounds;
+  xdg.configFile.btop.source = ./btop;
 }
