@@ -153,6 +153,7 @@
     jellyfin-ffmpeg
     wofi
     psmisc
+    btop
   ];
 
   xdg.portal.enable = true;
