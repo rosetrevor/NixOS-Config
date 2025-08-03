@@ -114,4 +114,6 @@
   xdg.configFile.kitty.source = ./kitty;
   xdg.configFile.waybar.source = ./waybar;
   xdg.configFile.wofi.source = ./wofi;
+  xdg.configFile.hypr.source = ./hypr;
+  xdg.configFile.backgrounds.source = ./backgrounds;
 }
