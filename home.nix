@@ -110,4 +110,5 @@
 
   xdg.configFile.nvim.source = ./nvim;
   xdg.configFile.kitty.source = ./kitty;
+  xdg.configFile.waybar.source = ./waybar;
 }
