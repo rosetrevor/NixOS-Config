@@ -6,6 +6,9 @@
   home.username = "trevbawt";
   home.homeDirectory = "/home/trevbawt";
   
+  imports = [
+    ./firefox.nix
+  ]; 
 
   programs.git = {
     enable = true;
