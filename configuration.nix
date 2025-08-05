@@ -91,6 +91,8 @@
       hyprlock
       hyprpaper
       hypridle
+      pavucontrol
+      blueberry
     ];
   };
 

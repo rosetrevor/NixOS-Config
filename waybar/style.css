@@ -77,7 +77,7 @@ button:hover {
 
 #clock {
     color: @maroon;
-    border-bottom: 2px solid @maroon;
+    /*border-bottom: 2px solid @maroon;*/
 }
 
 #clock.date {
@@ -86,13 +86,13 @@ button:hover {
 }
 
 #pulseaudio {
-    color: @blue;
-    border-bottom: 2px solid @blue;
+    color: @mauve;
+    /*border-bottom: 2px solid @mauve;*/
 }
 
 #network {
-    color: @yellow;
-    border-bottom: 2px solid @yellow;
+    color: @rosewater;
+    /*border-bottom: 2px solid @yellow;*/
 }
 
 #idle_inhibitor {
@@ -111,7 +111,12 @@ button:hover {
 
 #cpu {
     color: @green;
-    border-bottom: 2px solid @green;
+    /*border-bottom: 2px solid @green;*/
+}
+
+#bluetooth {
+    color: @blue;
+    /*border-bottom: 2px solid @blue;*/
 }
 
 /* If workspaces is the leftmost module, omit left margin */
