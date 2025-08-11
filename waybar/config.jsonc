@@ -39,11 +39,11 @@
   }, 
 
   "cpu": {
-    "format": "<span size='13000' foreground='#a6e3a1'>󰍛</span>",
+    "format": "<span size='13000' foreground='#a6e3a1'> 󰍛 </span>",
     "on-click": "kitty -e btop"
   },
   "bluetooth": {
-    "format": "  ",
+    "format": "<span size='13000' foreground='#89b4fa'> </span>",
     "format-disabled": "󰂲",
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
