@@ -39,7 +39,7 @@
   }, 
 
   "cpu": {
-    "format": "<span size='13000' foreground='#a6e3a1'> 󰍛 </span>",
+    "format": "<span size='13000' foreground='#a6e3a1'> 󰍛</span>",
     "on-click": "kitty -e btop"
   },
   "bluetooth": {
