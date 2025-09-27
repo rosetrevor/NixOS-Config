@@ -25,12 +25,32 @@ local plugins = {
   'theprimeagen/harpoon',
   'mbbill/undotree',
   'tpope/vim-fugitive',
-  'neovim/nvim-lspconfig',
+  {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require "lspconfig"
+    end,
+  },
   'echasnovski/mini.nvim',
   'neovim/nvim-lspconfig',
   'ThePrimeagen/vim-be-good',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'folke/tokyonight.nvim',
+  {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    branch = 'main',
+    build = ':TSUpdate'
+  },
+  {
+    'williamboman/mason.nvim',
+    opts = {
+      ensure_installed = {
+	"pyright",
+      },
+    },
+  },
+  --'custom_plugins' = 'custom_plugins'
  }
 
 local opts = {}

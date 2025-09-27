@@ -48,6 +48,8 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    pkgs.cmatrix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -111,6 +113,7 @@
   };
 
   xdg.configFile.nvim.source = ./nvim;
+  xdg.configFile.nvim.recursive = true;
   xdg.configFile.kitty.source = ./kitty;
   xdg.configFile.waybar.source = ./waybar;
   xdg.configFile.wofi.source = ./wofi;

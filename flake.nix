@@ -6,6 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs = { self, nixpkgs, home-manager, proxmox-nixos, ...}:
@@ -27,9 +28,20 @@
 	      ipAddress = "192.168.0.90";
 	    };
 
-	  nixpkgs.overlays = [
-	    proxmox-nixos.overlays.${system}
-	  ];
+	    services.postgresql = {
+	      enable = true;
+	      ensureDatabases = [ "sleeper_db" ];
+	      authentication = pkgs.lib.mkOverride 10 ''
+	      #type database DBuser origin-address auth-method
+	      local all      all                   trust
+	      host  all      all    127.0.0.1/32   trust
+	      host  all      all    ::1/128        trust
+	      '';
+	    };
+
+	    nixpkgs.overlays = [
+	      proxmox-nixos.overlays.${system}
+	    ];
 	  })
 	];
       };
