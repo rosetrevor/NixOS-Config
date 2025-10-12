@@ -27,12 +27,8 @@ local plugins = {
   'tpope/vim-fugitive',
   {
     'neovim/nvim-lspconfig',
-    config = function()
-      require "lspconfig"
-    end,
   },
   'echasnovski/mini.nvim',
-  'neovim/nvim-lspconfig',
   'ThePrimeagen/vim-be-good',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   'folke/tokyonight.nvim',
@@ -40,17 +36,52 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
     branch = 'main',
-    build = ':TSUpdate'
+    build = ':TSUpdate',
+    opts = {
+      indent = { enable = true },
+      highlight = { enable = true },
+      folds = { enable = true },
+      ensure_installed = {
+	"html",
+	"json",
+	"lua",
+	"luadoc",
+	"markdown",
+        "python",
+	"vim",
+	"vimdoc",
+	"query",
+	"xml",
+	"yaml",
+      },
+    }
   },
   {
     'williamboman/mason.nvim',
     opts = {
       ensure_installed = {
 	"pyright",
+	"basedpyright",
       },
     },
   },
-  --'custom_plugins' = 'custom_plugins'
+  {
+    'saghen/blink.cmp',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+      completion = { documentation = { auto_show = false } },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    },
+    opts_extend = { "sources.default" }
+  }
  }
 
 local opts = {}

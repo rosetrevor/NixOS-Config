@@ -6,6 +6,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "number"
 
+vim.lsp.enable('pyright')
 --local lspconfig = require("lspconfig")
 --lspconfig.ruff.setup({
 --  init_options = {
