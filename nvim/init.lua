@@ -1,5 +1,5 @@
-require("trevbawt")
 require("trevbawt.plugins")
+require("trevbawt")
 require("lazy")
 
 vim.opt.number = true

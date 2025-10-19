@@ -81,7 +81,23 @@ local plugins = {
       fuzzy = { implementation = "prefer_rust_with_warning" }
     },
     opts_extend = { "sources.default" }
-  }
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    lazy=false,
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+    },
+    keys = {
+      { '<c-h>', '<cmd>TmuxNagivateLeft<cr>' },
+      { '<c-j>', '<cmd>TmuxNagivateDown<cr>' },
+      { '<c-k>', '<cmd>TmuxNagivateUp<cr>' },
+      { '<c-l>', '<cmd>TmuxNagivateRight<cr>' },
+    },
+  },
  }
 
 local opts = {}

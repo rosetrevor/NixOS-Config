@@ -96,6 +96,7 @@
       ll = "ls -l";
       ".." = "cd ..";
     };
+    bashrcExtra = "stty -ixon";
   };
   programs.zsh = {
     enable = true;
@@ -112,6 +113,49 @@
     vimdiffAlias = true;
   };
 
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    baseIndex = 1;
+    plugins = with pkgs; [
+      tmuxPlugins.sensible
+      tmuxPlugins.catppuccin
+      tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = tmuxPlugins.catppuccin;
+	extraConfig = ''
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator " "
+          set -g @catppuccin_window_middle_separator " █"
+          set -g @catppuccin_window_number_position "right"
+          
+          set -g @catppuccin_window_default_fill "number"
+          set -g @catppuccin_window_default_text "#W"
+          
+          set -g @catppuccin_window_current_fill "number"
+          set -g @catppuccin_window_current_text "#W"
+          
+          set -g @catppuccin_status_modules_right "directory session"
+          set -g @catppuccin_status_left_separator  " "
+          set -g @catppuccin_status_right_separator ""
+          set -g @catppuccin_status_right_separator_inverse "no"
+          set -g @catppuccin_status_fill "icon"
+          set -g @catppuccin_status_connect_separator "no"
+          
+          set -g @catppuccin_directory_text "#{pane_current_path}"
+	'';
+      }
+    ];
+    terminal = "tmux-256color";
+    extraConfig = ''
+      unbind C-s
+      unbind r
+      bind r source-file ~/.dotfiles/tmux/tmux.conf
+      set-option -g status-position top 
+    '';
+  };
+
+
   xdg.configFile.nvim.source = ./nvim;
   xdg.configFile.nvim.recursive = true;
   xdg.configFile.kitty.source = ./kitty;
@@ -120,4 +164,5 @@
   xdg.configFile.hypr.source = ./hypr;
   xdg.configFile.backgrounds.source = ./backgrounds;
   xdg.configFile.btop.source = ./btop;
+  # xdg.configFile.tmux.source = ./tmux;
 }

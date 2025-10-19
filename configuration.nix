@@ -93,6 +93,7 @@
       hypridle
       pavucontrol
       blueberry
+      tmux
     ];
   };
 
@@ -156,6 +157,7 @@
     wofi
     psmisc
     btop
+    pyright
   ];
 
   xdg.portal.enable = true;
