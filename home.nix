@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -49,7 +48,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
-    pkgs.cmatrix
+    # pkgs.cmatrix  # This was for matrix theme
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -113,6 +112,12 @@
     vimdiffAlias = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+    shellWrapperName = "y";
+  };
+
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -164,5 +169,6 @@
   xdg.configFile.hypr.source = ./hypr;
   xdg.configFile.backgrounds.source = ./backgrounds;
   xdg.configFile.btop.source = ./btop;
+  xdg.configFile.yazi.source = ./yazi;
   # xdg.configFile.tmux.source = ./tmux;
 }
