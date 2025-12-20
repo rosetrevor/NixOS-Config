@@ -27,6 +27,15 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.interfaces.wlp5s0 = {
+      # useDHCP = false; # Disable automatic IP assignment
+      ipv4.addresses = [
+      {
+        address = "192.168.1.99";
+        prefixLength = 24;
+      }
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -85,7 +94,7 @@
   users.users.trevbawt = {
     isNormalUser = true;
     description = "trevbawt";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       hyprshot
       hyprlock
@@ -154,11 +163,15 @@
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
+    mullvad-vpn
     wofi
     psmisc
     btop
     pyright
   ];
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -168,6 +181,9 @@
 	openFirewall = true;
   };
 
+  services.mullvad-vpn.enable = true;
+  
+  virtualisation.docker.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

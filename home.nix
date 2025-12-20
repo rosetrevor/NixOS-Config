@@ -83,7 +83,7 @@
   #  /etc/profiles/per-user/trevbawt/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
@@ -96,12 +96,20 @@
       ".." = "cd ..";
     };
     bashrcExtra = "stty -ixon";
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
   programs.zsh = {
     enable = true;
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
+    };
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
     };
   };  
   programs.neovim = {
@@ -159,6 +167,8 @@
       set-option -g status-position top 
     '';
   };
+
+  programs.lazydocker.enable = true;
 
 
   xdg.configFile.nvim.source = ./nvim;
