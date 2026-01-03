@@ -15,7 +15,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelParams = [
-    "video=DP-1:2560x1440@60"
+    # "video=DP-1:2560x1440@60"
+    "video=DP-1:3840x2160@60"
   ];
 
   networking.hostName = "trevbawt"; # Define your hostname.
