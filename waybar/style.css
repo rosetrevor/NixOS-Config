@@ -2,7 +2,7 @@
 
 * {
     font-family: "MesloLGS Nerd Font Mono Bold";
-    font-size: 16px;
+    font-size: 12px;
     min-height: 0;
     font-weight: bold;
 }
@@ -17,7 +17,7 @@ window#waybar {
 }
 
 #window {
-    margin: 8px;
+    margin: 4px;
     padding-left: 8;
     padding-right: 8;
 }
@@ -112,11 +112,13 @@ button:hover {
 #cpu {
     color: @green;
     /*border-bottom: 2px solid @green;*/
+    font-size: 14px;
 }
 
 #bluetooth {
     color: @blue;
     /*border-bottom: 2px solid @blue;*/
+    font-size: 16px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
