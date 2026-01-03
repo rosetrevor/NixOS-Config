@@ -27,15 +27,18 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.interfaces.wlp5s0 = {
-      # useDHCP = false; # Disable automatic IP assignment
-      ipv4.addresses = [
-      {
-        address = "192.168.1.99";
-        prefixLength = 24;
-      }
-    ];
-  };
+  if "server\n" == builtins.readFile ./user_type.txt then
+    networking.interfaces.wlp5s0 = {
+        # useDHCP = false; # Disable automatic IP assignment
+        ipv4.addresses = [
+        {
+          address = "192.168.1.99";
+          prefixLength = 24;
+        }
+      ];
+    };
+  else
+    {};
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -176,10 +179,13 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  services.jellyfin = {
-    enable = true;
-	openFirewall = true;
-  };
+  if "server\n" == builtins.readFile ./user_type.txt then
+    services.jellyfin = {
+      enable = true;
+          openFirewall = true;
+    };
+  else
+    services.jellyfin.enable = false;
 
   services.mullvad-vpn.enable = true;
   
