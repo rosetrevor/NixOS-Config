@@ -58,6 +58,8 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  hardware.bluetooth.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
