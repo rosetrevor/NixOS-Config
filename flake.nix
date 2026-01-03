@@ -10,7 +10,8 @@
   };
 
   outputs = { self, nixpkgs, home-manager, proxmox-nixos, ...}:
-    if "server" == builtins.readFile ./user_type.txt then
+    if "server\n" == builtins.readFile ./user_type.txt then
+      # Server specific configuration
       let
         lib = nixpkgs.lib;
         system = "x86_64-linux";
@@ -54,6 +55,25 @@
           };
         };
       }
-    else
-      {};
+
+    else  
+      # Laptop specific configuration
+      let
+        lib = nixpkgs.lib;
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        nixosConfigurations = {
+          trevbawt = lib.nixosSystem {
+            inherit system;
+            modules = [ ./configuration.nix ];
+          };
+        };
+        homeConfigurations = {
+          trevbawt = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [ ./home.nix ];
+          };
+        };
+      };
 }
