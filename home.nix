@@ -137,39 +137,41 @@
       {
         plugin = tmuxPlugins.catppuccin;
 	extraConfig = ''
-          set -g @catppuccin_window_left_separator ""
-          set -g @catppuccin_window_right_separator " "
-          set -g @catppuccin_window_middle_separator " █"
-          set -g @catppuccin_window_number_position "right"
-          
-          set -g @catppuccin_window_default_fill "number"
-          set -g @catppuccin_window_default_text "#W"
-          
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W"
-          
-          set -g @catppuccin_status_modules_right "directory session"
-          set -g @catppuccin_status_left_separator  " "
-          set -g @catppuccin_status_right_separator ""
-          set -g @catppuccin_status_right_separator_inverse "no"
-          set -g @catppuccin_status_fill "icon"
-          set -g @catppuccin_status_connect_separator "no"
-          
-          set -g @catppuccin_directory_text "#{pane_current_path}"
+          set -g @catppuccin_flavor "mocha"
+	  # Has a bug in V2.1.3 (check tmux.conf for version)
+	  # Does not round the corners for current session
+          set -g @catppuccin_window_status_style "rounded"
+	  set -g @catppuccin_window_text "#W"
+	  set -g status-right "#{E:@catppuccin_status_session} #S"
+	  set -ag status-right "#{E:@catppuccin_status_application}"
+          set -g status-right-length 100
+          set -g status-left-length 100
+          set -g status-left ""
+	  # set -g status-right "#[fg=#{@thm_teal}]#[fg=#{@thm_crust},bg=#{@thm_teal}] session: #S #[fg=#{@thm_teal}, bg=#{@thm_bg}]"
 	'';
       }
     ];
     terminal = "tmux-256color";
     extraConfig = ''
-      unbind C-s
       unbind r
-      bind r source-file ~/.dotfiles/tmux/tmux.conf
+      bind-key 0 if-shell "tmux select-window -t :0" "" "new-window -t :0"
+      bind-key 1 if-shell "tmux select-window -t :1" "" "new-window -t :1"
+      bind-key 2 if-shell "tmux select-window -t :2" "" "new-window -t :2"
+      bind-key 3 if-shell "tmux select-window -t :3" "" "new-window -t :3"
+      bind-key 4 if-shell "tmux select-window -t :4" "" "new-window -t :4"
+      bind-key 5 if-shell "tmux select-window -t :5" "" "new-window -t :5"
+      bind-key 6 if-shell "tmux select-window -t :6" "" "new-window -t :6"
+      bind-key 7 if-shell "tmux select-window -t :7" "" "new-window -t :7"
+      bind-key 8 if-shell "tmux select-window -t :8" "" "new-window -t :8"
+      bind-key 9 if-shell "tmux select-window -t :9" "" "new-window -t :9"
       set-option -g status-position top 
+      set -g prefix C-Space 
+      set -g mouse on
+      set -g base-index 1
+      set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_1}]#W#[fg=#{@thm_surface_1},bg=#{@thm_bg}]"
     '';
   };
-
   programs.lazydocker.enable = true;
-
 
   xdg.configFile.nvim.source = ./nvim;
   xdg.configFile.nvim.recursive = true;
