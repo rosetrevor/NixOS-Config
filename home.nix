@@ -94,8 +94,13 @@
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
+      home = "home-manager switch --flake ~/.dotfiles";
+      rebuild = "sudo nixos-rebuild switch --flake ~/.dotfiles";
     };
-    bashrcExtra = "stty -ixon";
+    bashrcExtra = ''
+      stty -ixon
+      eval "$(starship init bash)"
+    '';
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
@@ -106,11 +111,16 @@
     shellAliases = {
       ll = "ls -l";
       ".." = "cd ..";
+      home = "home-manager switch --flake ~/.dotfiles";
+      rebuild = "sudo nixos-rebuild switch --flake ~/.dotfiles";
     };
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+    initExtra = ''
+      eval "$(starship init bash)"
+    '';
   };  
   programs.neovim = {
     enable = true;
@@ -119,6 +129,8 @@
     vimAlias = true;
     vimdiffAlias = true;
   };
+
+  programs.starship.enable = true;
 
   programs.yazi = {
     enable = true;
@@ -182,5 +194,8 @@
   xdg.configFile.backgrounds.source = ./backgrounds;
   xdg.configFile.btop.source = ./btop;
   xdg.configFile.yazi.source = ./yazi;
-  # xdg.configFile.tmux.source = ./tmux;
+  xdg.configFile.starship = {
+    source = ./starship/starship.toml;
+    target = "starship.toml";
+  };
 }
