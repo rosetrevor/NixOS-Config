@@ -98,6 +98,16 @@ local plugins = {
       { '<c-l>', '<cmd>TmuxNagivateRight<cr>' },
     },
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require('lualine').setup({
+        options = {
+	  theme = 'palenight'
+	}
+      })
+    end
+  },
  }
 
 local opts = {}

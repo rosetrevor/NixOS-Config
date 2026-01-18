@@ -1,3 +1,4 @@
+--None of this seems to be exectuing, putting in lua folder
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>ps', builtin.git_files, { desc = 'Telescope git files' })
