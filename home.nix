@@ -167,6 +167,7 @@
     terminal = "tmux-256color";
     extraConfig = ''
       unbind r
+      bind r source-file ~/.config/tmux/tmux.conf; display-message "config reloaded"
       bind-key 0 if-shell "tmux select-window -t :0" "" "new-window -t :0"
       bind-key 1 if-shell "tmux select-window -t :1" "" "new-window -t :1"
       bind-key 2 if-shell "tmux select-window -t :2" "" "new-window -t :2"
@@ -179,6 +180,8 @@
       bind-key 9 if-shell "tmux select-window -t :9" "" "new-window -t :9"
       set-option -g status-position top 
       set -g prefix C-Space 
+      set -g pane-border-style fg=#5c5f77
+      set -g pane-active-border-style fg=#5c5f77
       set -g mouse on
       set -g base-index 1
       set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_1}]#W#[fg=#{@thm_surface_1},bg=#{@thm_bg}]"
