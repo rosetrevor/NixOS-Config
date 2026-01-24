@@ -168,6 +168,8 @@
     extraConfig = ''
       unbind r
       bind r source-file ~/.config/tmux/tmux.conf; display-message "config reloaded"
+      bind-key '"' split-window -h
+      bind-key % split-window
       bind-key 0 if-shell "tmux select-window -t :0" "" "new-window -t :0"
       bind-key 1 if-shell "tmux select-window -t :1" "" "new-window -t :1"
       bind-key 2 if-shell "tmux select-window -t :2" "" "new-window -t :2"
