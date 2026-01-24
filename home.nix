@@ -101,6 +101,7 @@
     bashrcExtra = ''
       stty -ixon
       eval "$(starship init bash)"
+      set -o vi
     '';
     sessionVariables = {
       EDITOR = "nvim";
