@@ -120,10 +120,19 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
-    initExtra = ''
-      eval "$(starship init bash)"
-      set -o vi
+    initContent = ''
+      eval "$(starship init zsh)"
+      bindkey -v
+      export KEYTIMEOUT=1
+      setopt prompt_subst
     '';
+    plugins = [
+      {
+        name = "vi-mode";
+	src = pkgs.zsh-vi-mode;
+	file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
   };  
   programs.neovim = {
     enable = true;

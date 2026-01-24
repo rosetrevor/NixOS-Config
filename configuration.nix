@@ -97,8 +97,11 @@
       pavucontrol
       blueberry
       tmux
+      ripgrep
     ];
   };
+  programs.zsh.enable = true;
+  users.users.trevbawt.shell = pkgs.zsh;
 
   fonts.packages = with pkgs; [
     noto-fonts
