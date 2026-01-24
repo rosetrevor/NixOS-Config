@@ -122,6 +122,7 @@
     };
     initExtra = ''
       eval "$(starship init bash)"
+      set -o vi
     '';
   };  
   programs.neovim = {
