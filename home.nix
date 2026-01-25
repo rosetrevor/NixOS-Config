@@ -164,6 +164,7 @@
           set -g @catppuccin_flavor "mocha"
 	  # Has a bug in V2.1.3 (check tmux.conf for version)
 	  # Does not round the corners for current session
+          set -g @thm_mantle "#11111b"
           set -g @catppuccin_window_status_style "rounded"
 	  set -g @catppuccin_window_text "#W"
 	  set -g status-right "#{E:@catppuccin_status_session} #S"
@@ -197,7 +198,7 @@
       set -g pane-active-border-style fg=#5c5f77
       set -g mouse on
       set -g base-index 1
-      set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_1}]#W#[fg=#{@thm_surface_1},bg=#{@thm_bg}]"
+      set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_1}]#W#[fg=#{@thm_surface_1},bg=#{@thm_mantle}]"
     '';
   };
   programs.lazydocker.enable = true;

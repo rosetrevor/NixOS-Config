@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 local colors = {
   blue   = '#b4befe',
   green   = '#a6e3a1',
-  black  = '#080808',
+  black  = '#11111b',
   peach = '#fab387',
   white  = '#bac2de',
   red    = '#f38ba8',
@@ -62,7 +62,18 @@ local plugins = {
   },
   'echasnovski/mini.nvim',
   'ThePrimeagen/vim-be-good',
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { 
+    "catppuccin/nvim", 
+    name = "catppuccin", 
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+      	color_overrides = {
+      	  mocha = { base = "#11111b", mantle = "#11111b"}
+      	}
+      })
+    end
+  },
   --'folke/tokyonight.nvim',
   {
     'nvim-treesitter/nvim-treesitter',
