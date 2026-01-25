@@ -215,4 +215,5 @@
     source = ./starship/starship.toml;
     target = "starship.toml";
   };
+  xdg.configFile.dunst.source = ./dunst;
 }
