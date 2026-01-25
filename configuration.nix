@@ -56,6 +56,24 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = false;
 
+  # Remap caps lock
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];  # Apply to all keybs
+	settings = {
+	  main = {
+	    # Overload with control when held, esc when tapped
+	    capslock = "overload(control, esc)";
+	    # To just make it escape
+	    # capslock = "esc"
+	  };
+	};
+      };
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
