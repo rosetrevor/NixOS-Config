@@ -19,6 +19,7 @@ local colors = {
   blue   = '#b4befe',
   green   = '#a6e3a1',
   black  = '#080808',
+  peach = '#fab387',
   white  = '#bac2de',
   red    = '#f38ba8',
   violet = '#f5c2e7',
@@ -27,7 +28,7 @@ local colors = {
 
 local bubbles_theme = {
   normal = {
-    a = { fg = colors.black, bg = colors.violet },
+    a = { fg = colors.black, bg = colors.peach },
     b = { fg = colors.white, bg = colors.grey },
     c = { fg = colors.white },
   },
