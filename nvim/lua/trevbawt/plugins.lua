@@ -14,6 +14,37 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- lualine Bubbles Config
+local colors = {
+  blue   = '#b4befe',
+  green   = '#a6e3a1',
+  black  = '#080808',
+  white  = '#bac2de',
+  red    = '#f38ba8',
+  violet = '#f5c2e7',
+  grey   = '#313244',
+}
+
+local bubbles_theme = {
+  normal = {
+    a = { fg = colors.black, bg = colors.violet },
+    b = { fg = colors.white, bg = colors.grey },
+    c = { fg = colors.white },
+  },
+
+  insert = { a = { fg = colors.black, bg = colors.blue } },
+  visual = { a = { fg = colors.black, bg = colors.green } },
+  replace = { a = { fg = colors.black, bg = colors.red } },
+
+  inactive = {
+    a = { fg = colors.white, bg = colors.black },
+    b = { fg = colors.white, bg = colors.black },
+    c = { fg = colors.white },
+  },
+}
+-- end lualine bubbles config
+
+
 local plugins = {
   {
     'nvim-telescope/telescope.nvim',
@@ -31,7 +62,7 @@ local plugins = {
   'echasnovski/mini.nvim',
   'ThePrimeagen/vim-be-good',
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  'folke/tokyonight.nvim',
+  --'folke/tokyonight.nvim',
   {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
@@ -103,8 +134,32 @@ local plugins = {
     config = function()
       require('lualine').setup({
         options = {
-	  theme = 'palenight'
-	}
+           theme = bubbles_theme,
+           component_separators = '',
+           section_separators = { left = '', right = '' },
+        },
+        sections = {
+          lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+          lualine_b = { 'filename', 'branch' },
+          lualine_c = {
+            '%=', --[[ add your center components here in place of this comment ]]
+          },
+          lualine_x = {},
+          lualine_y = { 'filetype', 'progress' },
+          lualine_z = {
+            { 'location', separator = { right = '' }, left_padding = 2 },
+          },
+        },
+        inactive_sections = {
+          lualine_a = { 'filename' },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = { 'location' },
+        },
+        tabline = {},
+        extensions = {},
       })
     end
   },
