@@ -167,9 +167,9 @@
           set -g @thm_mantle "#11111b"
           set -g @catppuccin_window_status_style "rounded"
 	  set -g @catppuccin_window_text "#W"
-	  set -g status-right "#{E:@catppuccin_status_session} #S"
-	  set -ag status-right "#{E:@catppuccin_status_application}"
-          set -g status-right-length 100
+	  set -g status-right "#{E:@catppuccin_status_session} #S#[fg=#{@thm_surface_0},bg=#{@thm_mantle}] "
+	  set -ag status-right "#{E:@catppuccin_status_application}#[fg=#{@thm_surface_0},bg=#{@thm_mantle}]"
+          set -g status-right-length 70
           set -g status-left-length 100
           set -g status-left ""
 	  # set -g status-right "#[fg=#{@thm_teal}]#[fg=#{@thm_crust},bg=#{@thm_teal}] session: #S #[fg=#{@thm_teal}, bg=#{@thm_bg}]"
@@ -198,7 +198,7 @@
       set -g pane-active-border-style fg=#5c5f77
       set -g mouse on
       set -g base-index 1
-      set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_1}]#W#[fg=#{@thm_surface_1},bg=#{@thm_mantle}]"
+      set -g window-status-current-format "#[bg=#{@thm_crust},fg=#{@thm_mauve}]#[bg=#{@thm_mauve},fg=#{@thm_crust}]#I#[bg=#{@thm_crust},fg=#{@thm_mauve}]█#[fg=#{@thm_fg},bg=#{@thm_surface_0}] #W#[fg=#{@thm_surface_0},bg=#{@thm_mantle}]"
     '';
   };
   programs.lazydocker.enable = true;
