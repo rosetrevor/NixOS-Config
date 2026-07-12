@@ -173,14 +173,15 @@
     kitty
     neovim
     zig
-    jellyfin
-    jellyfin-web
-    jellyfin-ffmpeg
+    # jellyfin
+    # jellyfin-web
+    # jellyfin-ffmpeg
     mullvad-vpn
     wofi
     psmisc
     btop
     pyright
+    sops
   ];
   environment.variables = {
     EDITOR = "nvim";
@@ -192,6 +193,52 @@
   services.mullvad-vpn.enable = true;
   
   virtualisation.docker.enable = true;
+
+  sops = {
+    defaultSopsFile = /secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/trevbawt/.config/sops/age/keys.txt";
+  };
+  /*
+  nixflix = {
+    enable = true;
+    mediaDir = "/data/media";
+    stateDit = "/data/.state";
+    nginx.enable = true;
+    postgres.enable = true;
+
+    sonarr = {
+      enable = true;
+      config = {
+        apiKey = {_secret = config.sops.secrets."sonarr/api_key".path;};
+	hostConfig.password = {_secret = config.sops.secrets."sonarr/password".path;};
+      };
+    };
+
+    prowlarr = {
+      enable = true;
+      config = {
+        apiKey = {_secret = config.sops.secrets."prowlarr/api_key".path;};
+	hostConfig.password = {_secret = config.sops.secrets."prowlarr/password".path;};
+      };
+    };
+
+    sabnzbd = {
+      enable = true;
+      settings = {
+        misc.api_key = {_secret = config.sops.secrets."sabnzbd/api_key".path;};
+      };
+    };
+
+    jellyfin = {
+      enable = true;
+      users.admin = {
+        policy.isAdministrator = true;
+        password = {_secret = config.sops.secrets."jellyfin/admin_password".path;};
+      };
+    };
+  };
+  */
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

@@ -3,15 +3,23 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
-    home-manager.url = "github:nix-community/home-manager/release-26.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     yazi.url = "github:sxyazi/yazi";
-    /*nixarr.url = "github:nix-media-server/nixarr";*/
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  /*outputs = { self, nixpkgs, home-manager, proxmox-nixos, nixarr, ...}:*/
-  outputs = { self, nixpkgs, home-manager, proxmox-nixos, ...}:
+  outputs = { self, nixpkgs, home-manager, proxmox-nixos, nixflix, sops-nix, ...}:
     if "server\n" == builtins.readFile ./user_type.txt then
       # Server specific configuration
       let
@@ -24,9 +32,8 @@
             inherit system;
             modules = [ 
               ./configuration.nix
-              /* proxmox-nixos.nixosModules.proxmox-ve */
-
-	      /* nixarr.nixosModules.default */
+	      nixflix.nixosModules.default
+	      sops-nix.nixosModules.sops
 
               ({ pkgs, lib, ... }: {
 	        /*
