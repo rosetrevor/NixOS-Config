@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["pulseaudio", "network", "bluetooth", "cpu", "battery", "clock"],
+  "modules-right": ["hyprsonic", "pulseaudio", "network", "bluetooth", "cpu", "battery", "clock"],
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -37,7 +37,10 @@
       },
       "on-click": "pavucontrol"
   }, 
-
+  "hyprsonic": {
+      "format-enabled": "🚀",
+      "format-disabled": "🙭",
+  },
   "cpu": {
     "format": "<span size='13000' foreground='#a6e3a1'>󰍛 </span>",
     "on-click": "kitty -e btop"

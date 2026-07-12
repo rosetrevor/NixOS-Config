@@ -57,6 +57,7 @@ button:hover {
 #pulseaudio,
 #clock,
 #battery,
+#hyprsonic,
 #cpu,
 #memory,
 #disk,
@@ -88,6 +89,10 @@ button:hover {
 #pulseaudio {
     color: @mauve;
     /*border-bottom: 2px solid @mauve;*/
+}
+
+#hyprsonic {
+    color: @maroon;
 }
 
 #network {
