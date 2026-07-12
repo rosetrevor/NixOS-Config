@@ -46,9 +46,23 @@ in
         extensions.force = true;
 
         settings = {          
-          "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
 	  "extensions.autoDisableScopes" = 0;
 	  "extensions.enabledScopes" = 15;
+
+	  "extensions.pocket.enabled" = false;
+          "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
+          "browser.newtabpage.activity-stream.discoverystream.enabled" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          
+          # Disable other new tab clutter (Sponsored shortcuts/stories)
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = false;
+          
+          # Clean up the layout
+          "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+          "browser.newtabpage.activity-stream.section.order" = "topsites";
         };
       };
     };
