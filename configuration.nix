@@ -142,9 +142,6 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  # Install firefox.
-  programs.firefox.enable = true;
-  
   # Hyprland config
   programs.hyprland.enable = true;
 
