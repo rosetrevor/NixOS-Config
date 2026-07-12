@@ -53,8 +53,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = false;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = false;
 
   # Remap caps lock
   services.keyd = {
@@ -113,7 +113,7 @@
       hyprpaper
       hypridle
       pavucontrol
-      blueberry
+      blueman
       tmux
       ripgrep
     ];
@@ -124,7 +124,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -172,7 +172,7 @@
     )
     dunst
     libnotify
-    swww
+    awww
     kitty
     neovim
     zig

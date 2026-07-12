@@ -11,9 +11,9 @@
 
   programs.git = {
     enable = true;
-    userName = "Trevor";
-    userEmail = "trevor.ros3@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Trevor";
+      user.email = "trevor.ros3@gmail.com";
       init.defaultBranch = "main";
     };
   };
@@ -140,6 +140,8 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withRuby = false;
+    withPython3 = true;
   };
 
   programs.starship.enable = true;
@@ -203,8 +205,11 @@
   };
   programs.lazydocker.enable = true;
 
-  xdg.configFile.nvim.source = ./nvim;
-  xdg.configFile.nvim.recursive = true;
+  xdg.configFile.nvim = {
+    source = ./nvim;
+    recursive = true;
+  };
+  xdg.configFile."nvim/lazy-lock.json".enable = false;  # Lazy manages this
   xdg.configFile.kitty.source = ./kitty;
   xdg.configFile.waybar.source = ./waybar;
   xdg.configFile.wofi.source = ./wofi;

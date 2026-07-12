@@ -2,13 +2,15 @@
   description = "My Flake!";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     yazi.url = "github:sxyazi/yazi";
+    /*nixarr.url = "github:nix-media-server/nixarr";*/
   };
 
+  /*outputs = { self, nixpkgs, home-manager, proxmox-nixos, nixarr, ...}:*/
   outputs = { self, nixpkgs, home-manager, proxmox-nixos, ...}:
     if "server\n" == builtins.readFile ./user_type.txt then
       # Server specific configuration
@@ -22,13 +24,26 @@
             inherit system;
             modules = [ 
               ./configuration.nix
-              proxmox-nixos.nixosModules.proxmox-ve
+              /* proxmox-nixos.nixosModules.proxmox-ve */
+
+	      /* nixarr.nixosModules.default */
 
               ({ pkgs, lib, ... }: {
+	        /*
                 services.proxmox-ve = {
                   enable = true;
                   ipAddress = "192.168.0.90";
                 };
+
+                nixpkgs.overlays = [
+                  proxmox-nixos.overlays.${system}
+                ];
+
+                services.jellyfin = {
+                  enable = true;
+                      openFirewall = true;
+                };
+		*/
 
                 services.postgresql = {
                   enable = true;
@@ -41,9 +56,6 @@
                   '';
                 };
 
-                nixpkgs.overlays = [
-                  proxmox-nixos.overlays.${system}
-                ];
               
 	        networking.interfaces.wlp5s0 = {
                     # useDHCP = false; # Disable automatic IP assignment
@@ -54,12 +66,6 @@
                     }
                   ];
                 };
-
-                services.jellyfin = {
-                  enable = true;
-                      openFirewall = true;
-                };
-
               })
 
             ];
