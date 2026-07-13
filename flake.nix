@@ -54,7 +54,15 @@
 
                 services.postgresql = {
                   enable = true;
-                  ensureDatabases = [ "sleeper_db" ];
+                  ensureDatabases = [ 
+		    "sleeper_db"
+		    "sonarr"
+		    "prowlarr"
+		  ];
+		  ensureUsers = [
+		    { name = "sonarr"; ensureDBOwnership = true; }
+		    { name = "prowlarr"; ensureDBOwnership = true; }
+		  ];
                   authentication = pkgs.lib.mkOverride 10 ''
                   #type database DBuser origin-address auth-method
                   local all      all                   trust

@@ -20,6 +20,13 @@
   ];
 
   networking.hostName = "trevbawt"; # Define your hostname.
+  networking.hosts = {
+    "127.0.0.1" = [
+      "sonarr.local.lan"
+      "prowlarr.local.lan"
+      "jellyfin.local.lan"
+    ];
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -195,22 +202,36 @@
   virtualisation.docker.enable = true;
 
   sops = {
-    defaultSopsFile = /secrets/secrets.yaml;
+    defaultSopsFile = ./.secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/trevbawt/.config/sops/age/keys.txt";
+    secrets = {
+      "sonarr/api_key" = { neededForUsers = true; };
+      "sonarr/password" = { neededForUsers = true; };
+      "prowlarr/api_key" = { neededForUsers = true; };
+      "prowlarr/password" = { neededForUsers = true; };
+      "sabnzbd/api_key" = { neededForUsers = true; };
+      "jellyfin/admin_password" = { neededForUsers = true; };
+      "jellyfin/api_key" = { neededForUsers = true; };
+    };
   };
-  /*
+  
   nixflix = {
     enable = true;
     mediaDir = "/data/media";
-    stateDit = "/data/.state";
-    nginx.enable = true;
-    postgres.enable = true;
+    stateDir = "/data/.state";
+    nginx = {
+      enable = true;
+      domain = "local.lan";
+    };
+    postgres.enable = false;
 
     sonarr = {
       enable = true;
       config = {
         apiKey = {_secret = config.sops.secrets."sonarr/api_key".path;};
+	hostConfig.authenticationMethod = "external";
+	hostConfig.username = "trevbawt";
 	hostConfig.password = {_secret = config.sops.secrets."sonarr/password".path;};
       };
     };
@@ -219,26 +240,53 @@
       enable = true;
       config = {
         apiKey = {_secret = config.sops.secrets."prowlarr/api_key".path;};
+	hostConfig.authenticationMethod = "external";
+	hostConfig.username = "trevbawt";
 	hostConfig.password = {_secret = config.sops.secrets."prowlarr/password".path;};
       };
     };
 
-    sabnzbd = {
-      enable = true;
-      settings = {
-        misc.api_key = {_secret = config.sops.secrets."sabnzbd/api_key".path;};
-      };
-    };
+    # sabNzbId = {
+    #   enable = true;
+    #   settings = {
+    #     misc = {
+    #       api_key = {_secret = config.sops.secrets."sabnzbd/api_key".path;};
+    #     };
+    #   };
+    # };
 
     jellyfin = {
       enable = true;
+      apiKey = {_secret = config.sops.secrets."jellyfin/api_key".path;};
       users.admin = {
         policy.isAdministrator = true;
         password = {_secret = config.sops.secrets."jellyfin/admin_password".path;};
       };
     };
   };
-  */
+
+  # This didn't work, disabling for now
+  # services.nginx = {
+  #   enable = true;
+  #   virtualHosts."localhost" = {
+  #     listen = [ { addr = "0.0.0.0"; port = 8080; } ];
+  #     
+  #     # Mirror the reverse proxy paths nixflix expects
+  #     locations."/sonarr" = {
+  #       proxyPass = "http://127.0.0.1:8989";
+  #       proxyWebsockets = true;
+  #     };
+  #     locations."/prowlarr" = {
+  #       proxyPass = "http://127.0.0.1:9696";
+  #       proxyWebsockets = true;
+  #     };
+  #     locations."/jellyfin" = {
+  #       proxyPass = "http://127.0.0.1:8096";
+  #       proxyWebsockets = true;
+  #     };
+  #   };
+  # };
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
